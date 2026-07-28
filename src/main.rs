@@ -1,3 +1,6 @@
+mod api;
+mod handlers;
+
 use axum::{
     routing::get,
     Router,
@@ -8,7 +11,9 @@ use tower_http::services::{ServeDir, ServeFile};
 #[tokio::main]
 async fn main() {
     // router for webserver
-    let app = Router::new().fallback_service(
+    let app = Router::new()
+    .nest("/api/files", api::files::router())
+    .fallback_service(
     ServeDir::new("public")
         .not_found_service(ServeFile::new("public/404.html")),
     );

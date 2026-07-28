@@ -361,6 +361,7 @@ name = "rust_http_server"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "serde",
  "tokio",
  "tower-http",
 ]
