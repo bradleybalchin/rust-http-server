@@ -1,5 +1,6 @@
 mod api;
 mod handlers;
+mod models;
 
 use axum::{
     routing::get,

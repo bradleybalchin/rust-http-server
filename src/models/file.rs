@@ -6,6 +6,10 @@ use serde::Serialize;
 pub struct FileInfo {
     pub name: String,
     pub path: String,
-    pub is_directory: bool,
     pub size: u64,
+}
+
+#[derive(Serialize)]
+pub struct  FileList {
+    pub files: Vec<FileInfo>
 }
