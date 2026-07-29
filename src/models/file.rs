@@ -13,3 +13,4 @@ pub struct FileInfo {
 pub struct  FileList {
     pub files: Vec<FileInfo>
 }
+// TODO: Change to tree structure (add directories struct)
