@@ -6,5 +6,39 @@ h1 {
     color: black;
     font-weight: bold;
     position: relative;
-    font-size: 50px;
+    font-size: 45px;
+}
+
+.loginform {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border: 1.5px solid rgba(1, 1, 1, 0.2);
+    border-radius: 1.5rem;
+    padding-top: 2%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    
+    vertical-align: middle;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    text-align: left;
+    padding-inline: 15%;
+}
+
+label {
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+}
+
+input[type=text], input[type=password] {
+    /* width: 60%; */
+    border: 1px solid #ccc;
+    font-size: large;
+    padding: 1.5%;
 }

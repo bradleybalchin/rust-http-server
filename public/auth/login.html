@@ -10,14 +10,21 @@
 </head>
 <body>
     <main>
-        <h1>Log in</h1>
+        <h1>Welcome To My Webserver</h1>
+        <div class="loginform">
+        <h2>Please Log In</h2>
         <form action="">
-        <label for="username">Username:</label>
-        <input type="text" id="fname" name="fname"><br><br>
-        <label for="password">Password:</label>
-        <input type="text" id="lname" name="lname"><br><br>
-        <input type="submit" value="Submit">
-</form>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="uname" name="uname" placeholder="Enter Username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="psw" name="psw" placeholder="Enter Password">
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+        </div>
     </main>
 </body>
 </html>
