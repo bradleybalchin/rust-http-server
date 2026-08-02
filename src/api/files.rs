@@ -1,4 +1,4 @@
-use crate::handlers;
+use crate::{handlers, models::state::AppState};
 
 use axum::{
     routing::get,
@@ -7,7 +7,7 @@ use axum::{
 use tower_http::services::{ServeDir, ServeFile};
 
 // route to handler
-pub fn router() -> Router {
-    Router::new()
+pub fn router() -> Router<AppState> {
+    Router::<AppState>::new()
         .route("/", get(handlers::files::list))
 }
