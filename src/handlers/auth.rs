@@ -33,6 +33,9 @@ pub async fn login(
     println!("Login Detected");
     println!("Username {}", form.username);
 
+    // check login valid
+    // if not stay on /login and display error
+
 
     Redirect::to("/")
 }
