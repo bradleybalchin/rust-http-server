@@ -1,12 +1,13 @@
 mod api;
 mod handlers;
 mod models;
+mod middleware;
 
 
 use axum::{
     routing::get,
     Router,
-    middleware
+    middleware as axum_middleware
 };
 use tower_http::services::{ServeDir, ServeFile};
 use tower_cookies::{Cookie, CookieManagerLayer, Cookies};
@@ -16,7 +17,6 @@ use uuid;
 #[tokio::main]
 async fn main() {
 
-    // TODO: move index to askama handler
     // TODO: db connection
     // TODO: cookie management
     // TODO: must have valid session cookie to access api or files, can only see login page
@@ -27,17 +27,24 @@ async fn main() {
     //let admin_protected_routes = Router::new();
     //let user_protected_routes = Router::new();
 
-    // router for webserver
-    let app = Router::new()
+    //must be logged in as user 
+    let user_protected_routes = Router::new()
     //index
     .route("/", get(handlers::home::index))
 
+    //file api
+    .nest("/api/files", api::files::router())
+
+    // user authenitcation middleware
+    .layer(axum_middleware::from_fn(middleware::user::auth_user));
+
+    // router for webserver
+    let app = Router::new()
     //auth
     .route("/login", get(handlers::auth::login_page)
                                         .post(handlers::auth::login))     
 
-    //api                            
-    .nest("/api/files", api::files::router())
+    .merge(user_protected_routes)
 
     //404 fallback
     .fallback_service(
