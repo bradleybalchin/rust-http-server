@@ -1,6 +1,6 @@
 
 use std::{fs::{self, DirEntry}, path::Path};
-use crate::models::{file::FileInfo, file::FileList, file::Directory};
+use crate::models::{file::FileInfo, file::Directory};
 use axum::{
     http::StatusCode,
     Json,
