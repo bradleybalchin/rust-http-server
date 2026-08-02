@@ -10,6 +10,14 @@ pub struct FileInfo {
 }
 
 #[derive(Serialize)]
+pub struct Directory {
+    pub name: String,
+    pub path: String,
+    pub directories: Vec<Directory>,
+    pub files: Vec<FileInfo>
+}
+
+#[derive(Serialize)]
 pub struct  FileList {
     pub files: Vec<FileInfo>
 }
