@@ -6,6 +6,7 @@ mod models;
 use axum::{
     routing::get,
     Router,
+    middleware
 };
 use tower_http::services::{ServeDir, ServeFile};
 use tower_cookies::{Cookie, CookieManagerLayer, Cookies};
@@ -21,8 +22,14 @@ async fn main() {
     // Redirect to login page if no valid session cookie
     // TODO : Admin mode? (nested in logged in)
 
+
+    //let admin_protected_routes = Router::new();
+    //let user_protected_routes = Router::new();
+
     // router for webserver
     let app = Router::new()
+    .route("/login", get(handlers::auth::login_page)
+                                        .post(handlers::auth::login))                                  
     .nest("/api/files", api::files::router())
     .fallback_service(
     ServeDir::new("public")
@@ -30,8 +37,6 @@ async fn main() {
     )
     .layer(CookieManagerLayer::new());
         
-
-
 
     // run webserver
     let listener = tokio::net::TcpListener::bind("127.0.0.1:8080").await.unwrap();
