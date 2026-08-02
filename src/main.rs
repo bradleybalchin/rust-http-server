@@ -28,9 +28,17 @@ async fn main() {
 
     // router for webserver
     let app = Router::new()
+    //index
+    .route("/", get(handlers::home::index))
+
+    //auth
     .route("/login", get(handlers::auth::login_page)
-                                        .post(handlers::auth::login))                                  
+                                        .post(handlers::auth::login))     
+
+    //api                            
     .nest("/api/files", api::files::router())
+
+    //404 fallback
     .fallback_service(
     ServeDir::new("public")
         .not_found_service(ServeFile::new("public/404.html")),
