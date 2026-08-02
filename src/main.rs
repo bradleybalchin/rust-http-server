@@ -16,7 +16,7 @@ use uuid;
 #[tokio::main]
 async fn main() {
 
-
+    // TODO: move index to askama handler
     // TODO: cookie management
     // TODO: must have valid session cookie to access api or files, can only see login page
     // Redirect to login page if no valid session cookie
