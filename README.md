@@ -1,2 +1,2 @@
 # rust-http-server
-Server to serve files directly over http
+Rust Axum web server with user authentication PostgreSQL, and server rendered Askama templates.
