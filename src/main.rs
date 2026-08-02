@@ -5,9 +5,7 @@ mod middleware;
 
 
 use axum::{
-    routing::get,
-    Router,
-    middleware as axum_middleware
+    Router, middleware as axum_middleware, routing::{get, post}
 };
 use tower_http::services::{ServeDir, ServeFile};
 use tower_cookies::{Cookie, CookieManagerLayer, Cookies};
@@ -42,6 +40,7 @@ async fn main() {
     //auth
     .route("/login", get(handlers::auth::login_page)
                                         .post(handlers::auth::login))     
+    .route("/logout", post(handlers::auth::logout))
 
     .merge(user_protected_routes)
 

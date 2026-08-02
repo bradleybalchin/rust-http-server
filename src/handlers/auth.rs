@@ -54,6 +54,14 @@ pub async fn login(cookies: Cookies,
 }
 
 // remove session cookie
-pub async fn logout() {
+pub async fn logout(cookies: Cookies) -> Redirect {
+    
+    //TODO:: remove from db also
+    // remove cookie from browser
+    cookies.remove(Cookie::build(("session", ""))
+        .path("/")
+        .build(),
+    );
 
+    Redirect::to("/login")
 }
