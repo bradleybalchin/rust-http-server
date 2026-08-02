@@ -2,22 +2,33 @@ mod api;
 mod handlers;
 mod models;
 
+
 use axum::{
     routing::get,
     Router,
 };
 use tower_http::services::{ServeDir, ServeFile};
+use tower_cookies::{Cookie, CookieManagerLayer, Cookies};
+use uuid;
 
 
 #[tokio::main]
 async fn main() {
+
+
+    // TODO: cookie management
+    // TODO: must have valid session cookie to access api or files, can only see login page
+    // Redirect to login page if no valid session cookie
+    // TODO : Admin mode? (nested in logged in)
+
     // router for webserver
     let app = Router::new()
     .nest("/api/files", api::files::router())
     .fallback_service(
     ServeDir::new("public")
         .not_found_service(ServeFile::new("public/404.html")),
-    );
+    )
+    .layer(CookieManagerLayer::new());
         
 
 
