@@ -24,6 +24,11 @@ async fn main() {
 
     println!("Connected to database");
 
+    // run migrations
+    sqlx::migrate!("./migrations")
+    .run(&db)
+    .await.expect("Could not perform migrations");
+
     //create state
     let state = models::state::AppState { db };
 
