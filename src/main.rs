@@ -60,7 +60,9 @@ async fn main() {
         .with_state(state); //database connection
         
 
+    println!("Starting Server");
     // run webserver using tokio async runtime
     let listener = tokio::net::TcpListener::bind("127.0.0.1:8080").await.unwrap();
     axum::serve(listener, app).await.unwrap();
+
 }
