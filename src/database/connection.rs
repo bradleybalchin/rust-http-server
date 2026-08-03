@@ -1,4 +1,4 @@
-use sqlx::{pool, postgres::{PgPool, PgPoolOptions}};
+use sqlx::postgres::{PgPool, PgPoolOptions};
 use dotenvy::dotenv;
 use std::env;
 
