@@ -22,6 +22,8 @@ async fn main() {
         .await
         .expect("Failed to connect to database");
 
+    println!("Connected to database");
+
     //create state
     let state = models::state::AppState { db };
 
